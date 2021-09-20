@@ -1,0 +1,45 @@
+  <div>
+    <label class="inactive" for="cu_scaling_min" data-toggle="tooltip" data-placement="left" title="Codon-usage scaling: 75%"><span class="badge" style="float:left;">0.75</span><div class="codon_usages" style="background-image: url({{ plot_path }}); background-position: 0px 0px;"></div></label>
+    <label class="inactive active" for="cu_scaling_norm" data-toggle="tooltip" data-placement="left" title="Codon-usage scaling: 100%"><span class="badge" style="float:left;">1.00</span><div class="codon_usages" style="background-image: url({{ plot_path }}); background-position: 0px -26px;"></div></label>
+    <label class="inactive" for="cu_scaling_max" data-toggle="tooltip" data-placement="left" title="Codon-usage scaling: 125%"><span class="badge" style="float:left;">1.25</span><div class="codon_usages" style="background-image: url({{ plot_path }}); background-position: 0px -52px;"></div></label>
+    <div style="display: none;">
+        <input type="radio" name="cu_scaling" onchange="change_codon_usage_state('cu_scaling_min');" id="cu_scaling_min" value="75" title="Codon-usage scaling: 75%">
+        <input type="radio" name="cu_scaling" onchange="change_codon_usage_state('cu_scaling_norm');" id="cu_scaling_norm" value="100" title="Codon-usage scaling: 100%" checked="checked">
+        <input type="radio" name="cu_scaling" onchange="change_codon_usage_state('cu_scaling_max');" id="cu_scaling_max" value="125" title="Codon-usage scaling: 125%">
+    </div>
+  </div>
+
+  <!-- Most frequent proteins -->
+  <div style="height:32px; float: left; padding-top: 4px; padding-right: 8px;">
+      <span class="label label-default">Most frequent proteins:</span>
+      <select id="cu_most_abundant_proteins" style="vertical-align: top;">
+          <option value="-1">All</option>
+          <option value="200">200</option>
+          <option value="500">500</option>
+          <option value="1000">1000</option>
+          <option value="2000">2000</option>
+          <option value="5000">5000</option>
+          <option value="10000">10000</option>
+      </select>
+  </div>
+
+  <!-- Protein types -->
+  <div style="float: left; padding-right: 8px;">
+      <span class="label label-default">Protein types:</span>
+      <select multiple="multiple" id="cu_gb_keywords" style="vertical-align: top;">
+      {% for keyword, frequence in keywords|dictsort %}
+          <option value="{{ keyword }}">{{ keyword }} ({{ frequence }})</option>
+      {% endfor %}
+      </select>
+  </div>
+
+  <!-- Abundance threshold -->
+  <div style="height: 32px; float: left; padding-top: 8px;">
+      <span class="label label-default" style="margin-right: 12px; float: left;">Abundance threshold:</span>
+      <div id="slider-abundance-range" style="width:120px; float: left; position: relative; top: 2px;"></div>
+      <input type="text" id="cu_amount" readonly class="slider-amount">
+      <div id="abundance_histogram" style="display:block; position:relative; top:-104px; left:70px; height:50px; width:100px; margin-left:-4px; padding:0px; border:0px;"></div>
+  </div>
+
+
+{#  <button type="button" onclick="modify_cu();" class="btn btn-default" style="float: left;">Modify</button>#}

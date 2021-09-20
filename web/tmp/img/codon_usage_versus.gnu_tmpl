@@ -1,0 +1,27 @@
+#!/usr/bin/env gnuplot
+# set terminal postscript portrait color enhanced "Helvetica" 16
+set size 1, 1
+# set term png size 1200, 800
+# set term postscript
+set term svg dashed size 1200, 800 dynamic
+set termoption dash
+set output "###OUTPUT###.svg"
+set style line 1 pt 6 lc rgb "black" lw 1
+set style line 12 lt 1 lc rgb "orange" lw 1
+set style fill solid 0.1 border
+
+set key above  # Enable legend
+set xrange [0:1.0]
+set xlabel sprintf("Theoretical Codon-Usage '###XTITLE###' ") noenhanced
+set xtics 0, 0.1
+set ytics 0, 0.1
+set yrange [0:1.0]
+set ylabel sprintf("Computed Codon-Usage '###YTITLE###' ") noenhanced
+
+# Draw ideal line
+set arrow from 0.0,0.0 to 1.0,1.0 nohead ls 12
+
+set datafile separator ";"
+plot "###FILE###" using 2:3 with points axes x1y1 ls 1 title "Codon-Position", \
+     "###FILE###" using 2:3:1 with labels offset character 0,character 1 tc rgb "blue" notitle;
+quit

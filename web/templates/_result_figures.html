@@ -1,0 +1,25 @@
+<div class="panel panel-primary">
+
+  {# Result navigation #}
+  <div class="panel-heading">
+      <ul class="nav nav-tabs nav-panel">
+          <li role="presentation" class="tabs-header"><a>Profile information</a></li>
+      </ul>
+  </div>
+
+  {# Result contents #}
+  <div id="result_body_figures" class="panel-body" style="display: block;">
+
+    <div name="heprex_result_fig" id="heprex_result_fig" class="code-figures">
+    {% for key, figure_path in figures.items() %}
+        {% if figure_path|length > 0  %}<a class="fancybox-thumb" rel="fancybox-thumb" title="Heatmaps of selected model profile and suggestions (MCU, DiCU)" href="{{ figure_path }}" title=""><img src="{{ figure_path }}" class="fancybox-gallery" alt="Codon usage" width="240" style="float: left;" /></a>{% endif %}
+    {% endfor %}
+    </div>
+    <div name="heprex_result_fig" id="heprex_result_fig" class="code-figures">
+    {% for key, figure_code in cu_table.items() %}
+        {% if figure_code|length > 0 %}<a class="fancybox-thumb" rel="fancybox-thumb" title="Codon usage tables of selected model profile and suggestions" href="{{ figure_code }}"><img src="{{ figure_code }}" class="fancybox-gallery" alt="Codon usage" height="280" /></a>{% endif %}
+    {% endfor %}
+    </div>
+  </div>
+
+</div>

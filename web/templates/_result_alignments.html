@@ -1,0 +1,44 @@
+<div class="panel panel-primary">
+
+  {# Result navigation #}
+  <div class="panel-heading">
+      <ul class="nav nav-tabs nav-panel">
+          <li role="presentation" class="tabs-header"><a>Gene Alignments</a></li>
+          <li role="presentation" class="active">
+              <a onclick="$('#result_body_alignment').children().hide(); $('#heprex_result_simple').show(); $(this).parents('.nav').children('li').removeClass('active'); $(this).parent().toggleClass('active'); test = $(this);">
+                  MSA (plain)
+              </a>
+          </li>
+          <li role="presentation">
+              <a onclick="$('#result_body_alignment').children().hide(); $('#heprex_result_highlight_aa').show(); $(this).parents('.nav').children('li').removeClass('active'); $(this).parent().toggleClass('active'); test = $(this);">
+                  MSA (colored by amino acids)
+              </a>
+          </li>
+          <li role="presentation">
+              <a onclick="$('#result_body_alignment').children().hide(); $('#heprex_result_highlight_diff').show(); $(this).parents('.nav').children('li').removeClass('active'); $(this).parent().toggleClass('active'); test = $(this);">
+                  MSA (colored by differences)
+              </a>
+          </li>
+          {% if hhm != '' %}
+          <li role="presentation">
+            <a onclick="$('#result_body_alignment').children().hide(); $('#heprex_result_highlight_matches').show(); $(this).parents('.nav').children('li').removeClass('active'); $(this).parent().toggleClass('active'); test = $(this);">
+                MSA (colored by restriction sites)
+            </a>
+          </li>
+          {% endif %}
+      </ul>
+  </div>
+
+  {# Result contents #}
+  <div id="result_body_alignment" class="panel-body" style="display: block;">
+    <div name="heprex_result" id="heprex_result_simple" class="code" style="display: block;">
+        {% for seq in seqs %}{{ seq.seq + "\n" }}{% endfor %}
+    </div>
+    <div name="heprex_result" id="heprex_result_highlight_aa" class="code" style="display: none">{{ hha|safe }}</div>
+    <div name="heprex_result" id="heprex_result_highlight_diff" class="code" style="display: none;">{{ hhd|safe }}</div>
+    {% if hhm != '' %}
+    <div name="heprex_result" id="heprex_result_highlight_matches" class="code" style="display: none;">{{ hhm|safe }}</div>
+    {% endif %}
+  </div>
+
+</div>

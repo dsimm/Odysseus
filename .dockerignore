@@ -1,0 +1,23 @@
+# General files to be ignored
+.dockerignore
+.git
+.gitignore
+.gitkeep
+.DS_Store
+._*
+.idea
+nbproject
+~*
+*.bac
+*.bak
+log/*.gz
+log/*.log*
+postgres.logfile
+dump.rdb
+
+# Project specific files
+venv
+*.ipynb
+*.pyc
+bio_data/
+web/static/tmp/img/*

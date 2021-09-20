@@ -1,0 +1,74 @@
+<div class="panel panel-primary">
+
+  {# Result navigation #}
+  <div class="panel-heading">
+      <ul class="nav nav-tabs nav-panel">
+          <li role="presentation" class="tabs-header"><a>Single Gene Information</a></li>
+          {% for seq in seqs %}
+          {% if loop.index == 1 %}<li role="presentation" class="active">{% else %}<li role="presentation">{% endif %}
+          <a onclick="$('#result_body_sequences').children().hide(); $('#heprex_single_seq_view_{{loop.index}}').show(); $(this).parents('.nav').children('li').removeClass('active'); $(this).parent().toggleClass('active'); test = $(this);">{{loop.index}}</a></li>
+          {% endfor %}
+      </ul>
+  </div>
+
+  {# Result contents #}
+  <div id="result_body_sequences" class="panel-body" style="display: block;">
+    {% for seq in seqs %}
+    {% if loop.index == 1 %}
+    <div name="heprex_single_seq_view" id="heprex_single_seq_view_{{loop.index}}" class="single-view" style="display: block;">
+    {% else %}
+    <div name="heprex_single_seq_view" id="heprex_single_seq_view_{{loop.index}}" class="single-view" style="display: none;">
+    {% endif %}
+        <div class="row">
+            <div class="col-sm-4">
+                <h4><span class="label label-default">Sequence Information</span></h4>
+                <dl class="sequence-facts">
+                    <dt>Nucleotides:</dt>
+                    <dd>{{ stats[loop.index-1]['nuc_freq']|safe }}</dd>
+                    <dt>GC:</dt>
+                    <dd>{{ stats[loop.index-1]['GC']|safe }}</dd>
+                    <dt>CAI:</dt>
+                    <dd>{{ stats[loop.index-1]['CAI']|safe }}</dd>
+                    {% if stats[loop.index-1]['MFE'] != '' %}
+                    <dt>MFE (RNAFold):</dt>
+                    <dd>{{ stats[loop.index-1]['MFE']|safe }}</dd>
+                    <dt>RNAFold structure:</dt>
+                    <dd>
+                        <a class="fancybox-thumb" rel="fancybox-thumb" title="Sequence {{ loop.index }}: RNAFold structure" href="{{ stats[loop.index-1]['rnafold_img']|safe }}"><img class="fancybox-gallery" src="{{ stats[loop.index-1]['rnafold_img']|safe }}" height="64" /></a>
+                        &nbsp;<a class="fancybox-thumb" rel="fancybox-thumb" title="Sequence {{ loop.index }}: RNA folding energy dot plot" href="{{ stats[loop.index-1]['rnafold_dot_img']|safe }}"><img class="fancybox-gallery" src="{{ stats[loop.index-1]['rnafold_dot_img']|safe }}" height="64" /></a></dd>
+                    {% endif %}
+                    <dt>Relative Synonymous Codon Usage (RSCU):</dt>
+                </dl>
+                <a class="fancybox-thumb" rel="fancybox-thumb" title="Sequence {{ loop.index }}: Codon Usage" href="{{ cu_table[loop.index-1]|safe }}">
+                <img src="{{ cu_table[loop.index-1]|safe }}" class="fancybox-gallery" width="320" />
+                </a>
+            </div><!-- /.col-sm-4 -->
+            <div class="col-sm-4">
+                <h4><span class="label label-default">Suggested DNA sequence</span></h4>
+                <div name="" id="heprex_result_simple" class="code-single" style="display: block; white-space: normal;">{{ seq.seq }}</div>
+                {% if stats[loop.index-1]['MFE'] != '' %}
+                <h4><span class="label label-default">Base Pairing Sites (90% bpp)</span></h4>
+                <div name="" id="heprex_result_simple" class="code-single" style="display: block;">{{ stats[loop.index-1]['bpp_sites']|safe }}</div>
+                {% endif %}
+            </div><!-- /.col-sm-4 -->
+            <div class="col-sm-4">
+                <h4><span class="label label-default">Protocol of sequence generation</span></h4>
+                <ul class="list-group">
+                    <li class="list-group-item"><span class="glyphicon glyphicon-ok" aria-hidden="true" style="padding-right: 8px;"></span> Load model profile (MCU, RCU, RSCU)</li>
+                    <li class="list-group-item"><span class="glyphicon glyphicon-ok" aria-hidden="true" style="padding-right: 8px;"></span> Generated synonymous gene sequence adapted with <em>profiled Markov model</em></li>
+                    <li class="list-group-item"><span class="glyphicon glyphicon-ok" aria-hidden="true" style="padding-right: 8px;"></span> Scanned for emerging CpG islands</li>
+                    <li class="list-group-item"><span class="glyphicon glyphicon-ok" aria-hidden="true" style="padding-right: 8px;"></span> Scanned for internal termination signals</li>
+                    <li class="list-group-item"><span class="glyphicon glyphicon-ok" aria-hidden="true" style="padding-right: 8px;"></span> Scanned for excluded restriction sites</li>
+                    <li class="list-group-item"><span class="glyphicon glyphicon-ok" aria-hidden="true" style="padding-right: 8px;"></span> Calculated sequence statistics (GC, CAI)</li>
+                    {% if rnafold %}
+                    <li class="list-group-item"><span class="glyphicon glyphicon-ok" aria-hidden="true" style="padding-right: 8px;"></span> Performed RNAFold stability check</li>
+                    <li class="list-group-item"><span class="glyphicon glyphicon-ok" aria-hidden="true" style="padding-right: 8px;"></span> Searched for Base pairing sites</li>
+                    {% endif %}
+                </ul>
+            </div><!-- /.col-sm-4 -->
+        </div><!-- /.row -->
+    </div><!-- /.single-view -->
+    {% endfor %}
+    </div><!-- /.panel-body -->
+
+</div><!-- /.panel -->

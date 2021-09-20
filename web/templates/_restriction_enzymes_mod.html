@@ -1,0 +1,11 @@
+  <select multiple="multiple" id="restriction_sites" class="search_protein">
+  {% for key, entry in enzymes|dictsort %}
+    <optgroup label="Prototype {{ key }}">
+    {% for enzym in entry %}
+      <option value="{{ enzym.ID }}" data-toggle="tooltip" data-placement="left" title="{{ enzym.ID + ' ' + enzym.RS }}">
+        {{ enzym.ID }} [{{ enzym.RSS|join(', ') }}]
+      </option>
+    {% endfor %}
+    </optgroup>
+  {% endfor %}
+  </select>

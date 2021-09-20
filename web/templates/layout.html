@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="Odysseus is a new gene design software to adapt proteins (CDS) for heterologous expression applications in common model organisms.">
+    <meta name="author" content="M. Sc. Dominic Simm">
+    <link href="{{ url_for('static', filename='img/icons/heprex.png') }}" rel="shortcut icon" type="image/x-icon">
+
+    <title>Odysseus</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='lib/css/bootstrap/bootstrap.min.css') }}" rel="stylesheet" type="text/css" media="screen" >
+    <link href="{{ url_for('static', filename='lib/css/bootstrap/bootstrap-theme.min.css') }}" rel="stylesheet" type="text/css" media="screen" >
+
+    <!-- jQuery core CSS and Plugins -->
+    <link href="{{ url_for('static', filename='lib/css/jquery/jquery-ui.css') }}" rel="stylesheet" type="text/css" media="screen" >
+    <link href="{{ url_for('static', filename='lib/css/chosen/chosen.min.css') }}" rel="stylesheet" type="text/css" media="screen" >
+
+    <!-- fancyBox core CSS and Plugins -->
+    <link href="{{ url_for('static', filename='lib/css/fancybox/jquery.fancybox.css') }}" rel="stylesheet" type="text/css" media="screen" />
+    <link href="{{ url_for('static', filename='lib/css/fancybox/helpers/jquery.fancybox-thumbs.css') }}" rel="stylesheet" type="text/css" media="screen" />
+
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='lib/css/bootstrap/starter-template.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/application.css') }}" rel="stylesheet" media="screen">
+    <link href="{{ url_for('static', filename='css/alignment.css') }}" rel="stylesheet" media="screen">
+ </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">
+              <img style="width: 72px; position: relative; top: -24px; z-index: 32;" src="{{ url_for('static', filename='img/icons/heprex.png') }}">
+          </a>
+          <a class="navbar-brand" style="color: #f0ad4e;" href="/">Odysseus</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li {{ 'class="active"'|safe if 'index' in site else '' }}><a href="/">Gene Design</a></li>
+            <li {{ 'class="active"'|safe if 'doc' in site else '' }}><a href="/documentation">Documentation</a></li>
+            <li {{ 'class="active"'|safe if 'guide' in site else '' }}><a href="/guide">User guide</a></li>
+            <li {{ 'class="active"'|safe if 'faqs' in site else '' }}><a href="/faqs">FAQ</a></li>
+            <li {{ 'class="active"'|safe if 'contact' in site else '' }}><a href="/contact">Contact</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://github.com/dsimm/Odysseus" target="_blank">GitHub</a></li>
+{#            <a class="navbar-brand" href="#">#}
+{#              <img style="width: 72px; position: relative; top: -24px; z-index: 32;" src="{{ url_for('static', filename='img/icons/uni_logo.png') }}">#}
+{#            </a>#}
+          </ul>
+        </div><!--/.nav-collapse -->
+
+      </div>
+    </nav>
+
+    <!-- Define modal -->
+    <div id="info_modal_lg" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Information</h4>
+          </div>
+          <div class="modal-body">
+            <p id="general" style="display:none;"></p>
+            <p id="empty_sequence" style="display:none;">The uploaded sequence was empty.</p>
+            <p id="extended_iupac" style="display:none;">The uploaded sequence uses the extended IUPAC sequence alphabet (<em>with additional ambiguous aminoacids [B,X,Z,J,U,O]</em>), which leads to problems in the generation of the synonymous DNA sequences. Please change your uploaded sequence into a compatible format.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" style="display: none;">Save changes</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- Large modal -->
+    <div id="info_modal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="info_modal">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content"><!-- ... --></div>
+      </div>
+    </div>
+
+    <!-- Loading modal -->
+    <div id="loading_modal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="loading_modal">
+      <div class="modal-dialog modal-tiny">
+        <div class="modal-content" style="text-align: center;"><img src="{{ url_for('static', filename='img/loading.gif') }}" width="64" style="margin:8px;" /></div>
+      </div>
+    </div>
+
+    <!-- Full screen modal -->
+    <div id="fullscreen_modal" class="modal modal-fullscreen fade" tabindex="-1" role="dialog" aria-labelledby="fullscreen_modal">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content" style="text-align: center;"></div>
+      </div>
+    </div>
+
+
+    <!-- Main content container -->
+    <div class="container">
+
+      <div class="page">
+
+      {% for message in get_flashed_messages() %}
+        <div class=flash>{{ message }}</div>
+      {% endfor %}
+      {% block body %}{% endblock %}
+
+        <div class="page-header" style="margin-top: 6px; border-bottom-color: #fff;"></div>
+
+        <div class="panel panel-warning">
+            <div class="panel-heading"><h3 class="panel-title">Restrictions and License</h3></div>
+            <div class="panel-body">
+              <p>Using Odysseus by non-academics requires permission. Odysseus may be obtained upon
+                request and used under a Creative Commons BY-NC-SA 4.0 International License.</p>
+            </div>
+            <div style="clear:both"></div>
+            </div>
+        </div>
+
+      </div><!-- /.page -->
+
+    </div><!-- /.container -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <!-- jQuery Core -->
+    <script src="{{ url_for('static', filename='lib/js/jquery/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/js/jquery/jquery-ui.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/js/chosen/chosen.jquery.min.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='lib/js/bootstrap/bootstrap.min.js') }}"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="{{ url_for('static', filename='lib/js/bootstrap/ie10-viewport-bug-workaround.js') }}"></script>
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="{{ url_for('static', filename='lib/js/bootstrap/ie-emulation-modes-warning.js') }}"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Add fancyBox -->
+    <script type="text/javascript" src="{{ url_for('static', filename='lib/js/fancybox/jquery.fancybox.pack.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='lib/js/fancybox/helpers/jquery.fancybox-thumbs.js') }}"></script>
+
+    <!-- Optionally add helpers - button, thumbnail and/or media -->
+{#    <link rel="stylesheet" href="/fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />#}
+{#    <script type="text/javascript" src="/fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>#}
+{#    <script type="text/javascript" src="/fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>#}
+
+    <!-- Custom code, functions, ... -->
+    <script src="{{ url_for('static', filename='js/application.js') }}" type=text/javascript></script>
+
+</body>
+</html>

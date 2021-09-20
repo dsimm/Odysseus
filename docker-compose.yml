@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  odysseus:
+    build: .
+    image: odysseus_standalone
+    container_name: odysseus
+    # command: tail -f /dev/null
+    command: ./start_webserver.sh
+    # Run Flask webserver in foreground
+    # restart: always
+    env_file:
+      - .odysseus.env
+    ports:
+      - "2015:2015"

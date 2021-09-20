@@ -1,0 +1,293 @@
+{% extends "layout.html" %}
+{% block body %}
+
+        <div class="page-header">
+            <h1><span style="color: #f0ad4e;">Heterologous Gene Expression</span></h1>
+            <div class="lead" style="margin-bottom: 4px;">
+                Gene design software to enable selective protein biosynthesis regulation in modern expression systems.
+            </div>
+        </div>
+
+        <p class="lead lead-small">If Odysseus is helpful for your research, please cite:</p>
+        <blockquote cite="https://doi.org/10.1093/bioinformatics/btu700">
+            <p>Simm D., Popova B., Braus G. H., Waack S. and Kollmar M. (2021) Design of typical genes for heterologous gene expression.<br>bioRxiv 2021.09.14.460367
+            <cite><img src="http://www.doi.org/img/Logo_TM.png" alt="DOI_disc_logo" width="16" height="16"> - <a href="https://doi.org/10.1101/2021.09.14.460367">10.1101/2021.09.14.460367.</a></cite></p>
+{#            <p>Simm D., Popova B., Braus G. H., Waack S. and Kollmar M. (2021) Design of typical genes for heterologous gene expression.<br>Nucleic Acids Research, Volume 49, Issue 12, 9 July 2021, Pages 6804–6816.#}
+{#            <cite><img src="http://www.doi.org/img/Logo_TM.png" alt="DOI_disc_logo" width="16" height="16"> - <a href="https://doi.org/10.1093/nar/gkab493">10.1093/nar/gkab493</a></cite></p>#}
+        </blockquote>
+
+        <div class="panel panel-warning">
+            <div class="panel-heading panel-title" onclick="$(this).next('.panel-body').slideToggle(); $(this).children().toggleClass('glyphicon glyphicon-plus').toggleClass('glyphicon glyphicon-minus');">
+                Designing typical genes with Odysseus  <span class="glyphicon glyphicon-plus" aria-hidden="true" style="float: right;"></span>
+            </div>
+            <div class="panel-body" style="display: none;" >
+                <p class="lead lead-small" style="text-align: justify;">
+                    <abbr title="attribute">Odysseus</abbr> is a software for the design of typical protein-coding sequences for heterologous expression applications in common model organisms. The software realizes a probabilistic approach based on Markov models, that is highly configurable and can be trained with genomic data sets to learn the genetic characteristics of common expression systems, such as <em>S. cerevisiae</em>, <em>E. coli</em> or other.
+                </p>
+                <p class="lead lead-small" style="text-align: justify;">
+                    For the profile generation, besides whole genome data sets also reduced subsets can be used, that are for instance restricted to low or high abundant proteins or protein classes with specific functional roles. Based on these trained profiles, the gene design software enables the user to generate a set of synonymous CDS sequences for a given gene or protein sequence, all with the same level of typicity with respect to the chosen profile.
+                </p>
+                <p class="lead lead-small" style="text-align: justify; ">
+                    Typical genes are well suited for a controlled regulation of the heterologous expression of proteins. For detailed information with insights into an examplary expression study of <em>GFP</em> and <em>alpha-synuclein</em> in yeast (<em>S. cerevisiae</em>), see our new publication referenced below or the <a href="/documentation">Documentation</a> and <a href="/faqs">FAQs</a>.
+                </p>
+
+                <p class="lead lead-small" style="font-weight: 400">Software Features:</p>
+                <dl class="row lead lead-smaller">
+                    <dt class="col-sm-3" style="font-weight: 400">Profiles</dt>
+                    <dd class="col-sm-9">
+                        <p>Choose pre-calculated profiles for common model organisms</p>
+                        <p>Customize dynamically by protein classes, functions or abundance (<a href="https://pax-db.org/" target="_blank">PaxDB</a>)</p>
+                    </dd>
+                    <dt class="col-sm-3" style="font-weight: 400">Filtering and Exclusion</dt>
+                    <dd class="col-sm-9">
+                        <p>Restriction Sites of commercial or all enzymes (<a href="http://rebase.neb.com/rebase/rebase.html" target="_blank">REBASE</a>)</p>
+                        <p>Stability level predicted by RNAFold (<a href="https://www.tbi.univie.ac.at/RNA/" target="_blank">ViennaRNA</a>)</p>
+                    </dd>
+                    <dt class="col-sm-3" style="font-weight: 400">Regulate expression levels</dt>
+                    <dd class="col-sm-9">
+                        <p>Avoid toxic effects by overexpresing proteins in the expression system</p>
+                        <p>Optimize the amounts of synthesized protein products for biopharmaceutical applications</p>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+
+        <div class="panel panel-warning">
+        <div class="panel-heading panel-title" onclick="$(this).next('.panel-body').slideToggle(); $(this).children().toggleClass('glyphicon glyphicon-plus').toggleClass('glyphicon glyphicon-minus');">
+            Quick start guide  <span class="glyphicon glyphicon-plus" aria-hidden="true" style="float: right;"></span>
+        </div>
+        <div class="panel-body" style="display: none;" >
+            <p class="lead lead-small" style="text-align: justify;">
+                <dl class="row lead lead-smaller">
+                    <dt class="col-sm-3" style="font-weight: 400">1. Step: Input information</dt>
+                    <dd class="col-sm-9">
+                        <p>Paste the sequence information of the protein or gene of your interest in the <em>input mask</em>.</p>
+                        <p>Choose the number of modified sequences to be generated.</p>
+                        <p>Select a pre-calculated profile for the adaptation to a model organism and generate.</p>
+                    </dd>
+                    <dt class="col-sm-3" style="font-weight: 400">2. Step: Detailed configuration (optional)</dt>
+                    <dd class="col-sm-9">
+                        <p>Filter resulting synonymous gene sequences for certain restriction sites or RNA stability level (<em>MFE</em>) </p>
+                        <p>Dynamically create a custom profile with different CU weighting or by restricting protein subsets on abundancy or functional classes.</p>
+                    </dd>
+                    <dt class="col-sm-3" style="font-weight: 400">3. Step: Inspect generated synonymous gene sequences</dt>
+                    <dd class="col-sm-9">
+                        <p>Compare DNA sequence suggestions by functional alignments (plain, amino acids, codon differences)</p>
+                        <p>Inspect single gene information such as sequence statistics, RNA stability and structure or Base pairing sites</p>
+                        <p>Control profile information of model and suggestions</p>
+                    </dd>
+                </dl>
+            </p>
+        </div>
+        </div>
+
+        <!-- Form section -->
+          <div class="panel panel-primary">
+            <div class="panel-heading"><h3 class="panel-title">Sequence Input Mask</h3></div>
+            <div class="panel-body">
+
+            <div class="row">
+              <div class="col-sm-10">
+                <div class="input-group">
+                  <input id="show_protein" name="show_protein" type="text" class="form-control" placeholder="Protein sequence (flat file, FASTA format) " aria-describedby="basic-addon1" style="display: none;">
+                  <textarea id="search_protein" name="search_protein" rows="3" class="form-control code" style="display: block; border-radius: 4px 0px 4px 4px; width: 100%;"  placeholder="Protein or Gene sequence (FASTA format, flat file)" aria-describedby="basic-addon1"></textarea>
+
+                  <!-- Choose number of sequences to suggest -->
+                  <div class="input-group-btn" style="vertical-align: top;">
+                    <button type="button" id="button_number" class="btn btn-info dropdown-toggle dropdown-middle" style="min-width: 64px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Number of sequences to generate"># <span class="caret"></span></button>
+                    <ul class="dropdown-menu" style="top: 34px;">
+                      <li role="none" class="disabled"><a href="#" title="Profiles">Sequence number</a></li>
+                      <li><a href="javascript:set_seq_number(1);">1</a></li>
+                      <li><a href="javascript:set_seq_number(5);">5</a></li>
+                      <li><a href="javascript:set_seq_number(10);">10</a></li>
+                      <li><a href="javascript:set_seq_number(25);">25</a></li>
+                      <li><a href="javascript:set_seq_number(100);">100</a></li>
+                    </ul>
+                  </div><!-- /btn-group -->
+
+                  <!-- Choose organism for setting codon-usage -->
+                  <div class="input-group-btn" style="vertical-align: top;">
+                    <button type="button" id="button_codon_usage" class="btn btn-info dropdown-toggle" style="min-width: 150px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Expression systems">Expression systems<span class="caret"></span></button>
+                    <ul class="dropdown-menu" style="top: 34px;">
+                      <li role="none" class="disabled"><a href="#" title="Expression systems">Expression System Profiles</a></li>
+                      <li><a href="javascript:select_host_organism('e.coli','E. coli');" title="Escherichia coli"><em>E. coli</em></a></li>
+                        <li><a href="javascript:select_host_organism('s.cerevisiae','S. cerevisiae');" title="Saccharomyces cerevisiae"><em>S. cerevisiae</em></a></li>
+                      <li><a href="javascript:select_host_organism('s.cerevisiae_low_weighted','S. cerevisiae (low, weighted)');"><em>S. cerevisiae (low, weighted)</em></a></li>
+                      <li><a href="javascript:select_host_organism('s.cerevisiae_mid_weighted','S. cerevisiae (mid, weighted)');"><em>S. cerevisiae (mid, weighted)</em></a></li>
+                      <li><a href="javascript:select_host_organism('s.cerevisiae_high_weighted','S. cerevisiae (high, weighted)');"><em>S. cerevisiae (high, weighted)</em></a></li>
+                      <li><a href="javascript:select_host_organism('s.cerevisiae_low_weighted_invert','S. cerevisiae (low, weighted, invert)');"><em>S. cerevisiae (low, weighted, invert)</em></a></li>
+                      <li><a href="javascript:select_host_organism('s.cerevisiae_mid_weighted_invert','S. cerevisiae (mid, weighted, invert)');"><em>S. cerevisiae (mid, weighted, invert)</em></a></li>
+                      <li><a href="javascript:select_host_organism('s.cerevisiae_high_weighted_invert','S. cerevisiae (high, weighted, invert)');"><em>S. cerevisiae (high, weighted, invert)</em></a></li>
+                      <li><a href="javascript:select_host_organism('a.thaliana','A. thaliana');" title="Arabidopsis thaliana"><em>A. thaliana</em></a></li>
+                      <li role="separator" class="divider"></li>
+                      <li role="none" class="disabled"><a href="#" title="Expression systems">Coming soon</a></li>
+                      <li><a href="javascript:select_host_organism('a.niger','A. niger');" title="Not yet available">
+                          <span class="glyphicon glyphicon-hourglass"></span> <em>A. niger</em></a>
+                      </li>
+                      <li><a href="javascript:select_host_organism('c.elegans','C. elegans');" title="Not yet available">
+                          <span class="glyphicon glyphicon-hourglass"></span> <em>C. elegans</em></a>
+                      </li>
+                      <li><a href="javascript:select_host_organism('d.melanogaster','D. melanogaster');" title="Not yet available">
+                          <span class="glyphicon glyphicon-hourglass"></span> <em>D. melanogaster</em></a>
+                      </li>
+                    </ul>
+                  </div><!-- /btn-group -->
+                </div><!-- /input-group -->
+              </div><!-- /.col-sm-10 -->
+
+              <div class="col-sm-2">
+                <div class="input-group">
+                    <input type="hidden" id="host_organism" name="host_organism" value="e.coli" />
+                    <input type="hidden" id="seq_number" name="seq_number" value="10" />
+                    <button type="submit" class="btn btn-primary" id="run_btn"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Generate</button>
+                </div><!-- /input-group -->
+              </div><!-- /.col-sm-2 -->
+            </div><!-- /.row -->
+
+            <!-- Separator -->
+            <hr style="padding: 0px; margin: 0px; margin-top: 8px;">
+
+            <div id="translated_protein_div" class="row" style="display: none;">
+              <div class="col-sm-12">
+                <div class="input-group">
+                  <h4><span class="label label-default">Translated protein sequence</span></h4>
+                  <textarea id="translated_protein" name="translated_protein" rows="1" class="form-control code" style="border-radius: 4px 4px 4px 4px; min-height: 60px; width: 705px; " aria-describedby="basic-addon1"></textarea>
+                </div><!-- /input-group -->
+              </div><!-- /.col-sm-12 -->
+            </div><!-- /.row -->            <div class="row">
+              <div class="col-sm-12">
+                <div class="input-group">
+                    <h4><span class="label label-default">Example data: Protein or CDS sequences</span></h4>
+                </div><!-- /input-group -->
+              </div><!-- /.col-sm-12 -->
+            </div><!-- /.row -->
+
+            <div class="well well-sm">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="input-group">
+                      <button type="button" class="btn btn-warning example_protein" id="protseq5">GFP (AA)</button>
+                      <button type="button" class="btn btn-warning example_protein" id="seq1">E.Coli Glucokinase (AA)</button>
+                      <button type="button" class="btn btn-warning example_protein" id="protseq2">Human Insulin (AA)</button>
+                      <button type="button" class="btn btn-warning example_protein" id="protseq3">Human Brain form hexokinase (AA)</button>
+                      <button type="button" class="btn btn-warning example_protein" id="protseq4">Human Synphilin Alpha (AA)</button>
+                      <button type="button" class="btn btn-info example_protein" id="nucseq5">Human Alpha Synuclein (DNA)</button>
+                      <button type="button" class="btn btn-info example_protein" id="nucseq2">Human Insulin (DNA)</button>
+                      <button type="button" class="btn btn-info example_protein" id="nucseq3">Human Brain form hexokinase (DNA)</button>
+                      <button type="button" class="btn btn-info example_protein" id="nucseq4">Human Synphilin Alpha (DNA)</button>
+                    </div><!-- /input-group -->
+                  </div><!-- /.col-sm-12 -->
+                </div><!-- /.row -->
+            </div>
+
+          </div><!-- /.panel-body -->
+        </div><!-- /.panel -->
+
+        <!-- Configuration panel suggestions -->
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+              <ul class="nav nav-tabs nav-panel">
+                  <li role="presentation" class="tabs-header"><a>Configuration</a></li>
+                  <li role="presentation" class="active">
+                      <a onclick="$(this).parents('.panel').children('.panel-body').hide(); $(this).parents('.panel').children('#conf_suggestions').show(); $(this).parents('.nav').children('li').removeClass('active'); $(this).parent().toggleClass('active')">Filtering</a>
+                  </li>
+                  <li role="presentation">
+                      <a onclick="$(this).parents('.panel').children('.panel-body').hide(); $(this).parents('.panel').children('#conf_codon_usage').show(); $(this).parents('.nav').children('li').removeClass('active'); $(this).parent().toggleClass('active')">Profile Settings</a>
+                  </li>
+              </ul>
+              <a style="float:right; color:white; position:relative; top:-32px; display: block;" onclick="$(this).parents('.panel').children('.panel-body').slideUp(); $(this).hide(); $(this).next('a').show();"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></a>
+              <a style="float:right; color:white; position:relative; top:-32px; display: none;" onclick="$(this).parents('.panel').children('#conf_suggestions').slideDown(); $(this).hide(); $(this).prev('a').show();"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+          </div>
+
+          <!-- Configuration panel Codon usage -->
+          <div id="conf_suggestions" class="panel-body" style="display: block;">
+
+            <div id="filter_div" class="row suggest_module" style="display: block;">
+              <div class="col-sm-6">
+                <div class="input-group tile" style="min-height: 100px;">
+                  <h4><span class="label label-default">Exclude Restriction Enzymes (grouped by prototype)</span></h4>
+                  <div id="restriction_enzymes_content">
+                  <select multiple="multiple" id="restriction_sites" class="search_protein">
+                  {% for key, entry in enzymes|dictsort %}
+                    <optgroup label="Prototype {{ key }}">
+                    {% for enzym in entry %}
+                      <option value="{{ enzym.ID }}" data-toggle="tooltip" data-placement="left" title="{{ enzym.ID + ' ' + enzym.RS }}">
+                        {{ enzym.ID }} [{{ enzym.RSS|join(', ') }}]
+                      </option>
+                    {% endfor %}
+                    </optgroup>
+                  {% endfor %}
+                  </select>
+                  </div>
+                  <label for="commercial"><span class="label label-default" style="margin-right:4px; margin-top:8px;">Commercial enzymes</span><input type="radio" id="commercial" name="commercial" value="true" onchange="request_restriction_data($(this).val());" checked="checked" /></label>
+                  <label for="all" style="margin-left:4px;"><input type="radio" id="all" name="commercial" value="false" onchange="request_restriction_data($(this).val());" /><span class="label label-default" style="margin-left:4px; margin-top:8px;">All enzymes</span></label>
+                </div><!-- /input-group -->
+              </div><!-- /.col-sm-6 -->
+
+{#              <div class="col-sm-6">#}
+{#                <div class="input-group tile">#}
+{#                    <h4><span class="label label-default">Adapt GC content</span></h4>#}
+{#                    <span class="label label-default" style="margin-right: 12px; float: left;">Min.</span>#}
+{#                    <div id="slider-vertical_gc" style="width:120px; float: left; position: relative; top: 2px;"></div>#}
+{#                    <span class="label label-default" style="margin-left: 12px; float: left;">Max.</span>#}
+{#                    <input type="text" id="gc_amount" class="slider-amount" readonly>#}
+{#                </div><!-- /input-group -->#}
+{#              </div><!-- /.col-sm-6 -->#}
+{#            </div><!-- /.row -->#}
+
+              <div class="col-sm-6">
+                <div class="input-group tile" style="min-height: 100px;">
+                     <span class="label label-info" style="margin-top: 4px;float: right;margin-right: -4px;">computation intensive</span>
+                    <h4><span class="label label-default">Set stability level (RNAfold: Minimum free energy)</span></h4>
+                    <span class="label label-default" style="margin-right: 12px; float: left;">Min.</span>
+                    <div id="slider-vertical_rnafold" style="width:120px; float: left; position: relative; top: 2px;"></div>
+                    <span class="label label-default" style="margin-left: 12px; float: left;">Max.</span>
+                    <input type="text" id="rnafold_amount" class="slider-amount" readonly>
+                    <label for="rnafold_switch_on" style="margin-left:4px;"><span class="label label-default" style="margin-left:4px;">On</span><input type="radio" id="rnafold_switch_on" name="rnafold_switch" value="on" checked="checked"></label><label for="rnafold_switch_off" style="margin-left:4px;"><input type="radio" id="rnafold_switch_off" name="rnafold_switch" value="off"><span class="label label-default" style="margin-left:4px;">Off</span></label>
+                </div><!-- /input-group -->
+              </div><!-- /.col-sm-6 -->
+
+{#              <div class="col-sm-6">#}
+{#                <div class="input-group tile">#}
+{#                    <h4><span class="label label-default">Set stability level (RNAfold: Minimum free energy)</span></h4>#}
+{#                    <span class="label label-default" style="margin-right: 12px; float: left;">Min.</span>#}
+{#                    <div id="slider-vertical_rnafold" style="width:120px; float: left; position: relative; top: 2px;"></div>#}
+{#                    <span class="label label-default" style="margin-left: 12px; float: left;">Max.</span>#}
+{#                    <input type="text" id="rnafold_amount" class="slider-amount" readonly>#}
+{#                </div><!-- /input-group -->#}
+{#              </div><!-- /.col-sm-6 -->#}
+
+            </div><!-- /.row -->
+          </div><!-- /.panel-body -->
+
+        <!-- Configuration panel Codon usage -->
+          <div id="conf_codon_usage" class="panel-body" style="display: none">
+
+            <div id="filter_div" class="row suggest_module" style="display: block;">
+              <div class="col-sm-12">
+                <div class="input-group tile">
+                  <h4><span class="label label-default">Modulate codon usage for <span id="active_organism">...</span></span></h4>
+                  <div id="codon_usage_mod" style="display: none;">
+                  </div><!-- /codon_usage_mod -->
+                </div><!-- /input-group -->
+              </div><!-- /.col-sm-12 -->
+            </div><!-- /.row -->
+          </div><!-- /.panel-body -->
+
+        </div><!-- /.panel -->
+
+        <!-- Result section -->
+        <div id="result" style="display: block;">
+            <div class="panel panel-primary" style="overflow: visible">
+              <div class="panel-heading">
+                <h3 class="panel-title">Result: Synonymous gene sequences adapted to "<span style="font-style: oblique;" id="active_organism">...</span>"</h3>
+              </div>
+              <div class="panel-body">
+                <div class="well well-sm">
+                  <div style="background:url(static/img/placeholder/dna_pixeled.png) no-repeat; background-size: 100%; background-position: 0px -180px; opacity: 0.33; height: 200px; border-radius: 4px;"></div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+{% endblock %}

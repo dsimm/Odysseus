@@ -1,0 +1,122 @@
+// Place all the styles related to the Genes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+@function colorAA_deprecated($num){
+  // TODO: Set better viewable colours for aminoacids
+  // Statement can't be processed by Flask build-in Assets-SCSS-Compiler (modulo-bug)
+  @return rgb( (255/20)*$num, (((255/20)+(255/3))*$num)%255, (((255/20)+(255/3)*2)*$num)%255 );
+}
+
+@function colorAA($num){
+  // TODO: Set better viewable colours for aminoacids
+  // Static colour set: BITV approved
+  //$colors: (
+  //  nuc-A[ 1], nuc-C[ 2], nuc-D[ 3], nuc-E[ 4], nuc-F[ 5],
+  //  nuc-G[ 6], nuc-H[ 7], nuc-I[ 8], nuc-K[09], nuc-L[10],
+  //  nuc-M[11], nuc-N[12], nuc-P[13], nuc-Q[14], nuc-R[15],
+  //  nuc-S[16], nuc-T[17], nuc-V[18], nuc-W[19], nuc-Y[20],
+  //);
+  // Paletton: 4 Color - Lighter Pastel
+  //http://paletton.com/palette.php?uid=7000u0kleqtbzEKgVuIpcmGtdhZ
+  //$colors: (
+  //      #D38647,#FFCDA3,#F5AE73,#B56726,#8F480D,
+  //      #D34747,#FFA3A3,#F57373,#B52626,#8F0D0D,
+  //      #39A939,#8CDC8C,#5CC45C,#1F911F,#0A730A,
+  //      #2B7E7E,#76B8B8,#459393,#176C6C,#085656,
+  //);
+  // Paletton: 4 Color - Shiny
+  // http://paletton.com/palette.php?uid=7000u0kwi%2B%2Bbu%2B%2BhX%2B%2B%2B%2Brd%2B%2BkX
+  //$colors: (
+  //      #FF7400,#FFCDA4,#FFB170,#D96200,#A74C00,
+  //      #FF0000,#FFA4A4,#FF7070,#D90000,#A70000,
+  //      #00FF00,#A4FFA4,#70FF70,#00AD00,#008500,
+  //      #00FFFF,#A4FFFF,#70FFFF,#008282,#006464,
+  //);
+  // Multiple Alignment Editor (MAEditor)
+  //
+  $colors: (
+        #77dd88,#99ee66,#55bb33,#55bb33,#9999ff,
+        #77dd88,#5555ff,#66bbff,#ffcc77,#66bbff,
+        #66bbff,#55bb33,#eeaaaa,#55bb33,#ffcc77,
+        #ff4455,#ff4455,#66bbff,#9999ff,#9999ff,
+  );
+
+  @return nth($colors, $num);
+}
+
+.alignment {
+  line-height: 20px;
+}
+
+.alignment-navigation {
+  font-family: Consolas, Courier, "Courier New";
+  padding-bottom: 4px;
+}
+
+.sequence {
+  float: left;
+  line-height: 14px;
+  height: 18px;
+  outline-offset: 1em;
+  //letter-spacing: 1em;
+}
+
+.page-change-left {
+  letter-spacing: -8px;
+  padding: 0 4px 0 0px;
+}
+.page-change-right {
+  letter-spacing: -6px;
+  //padding: 0 4px 0 4px;
+}
+
+.nuc-A { background-color: colorAA(1) }
+.nuc-C { background-color: colorAA(2) }
+.nuc-D { background-color: colorAA(3) }
+.nuc-E { background-color: colorAA(4) }
+.nuc-F { background-color: colorAA(5) }
+.nuc-G { background-color: colorAA(6) }
+.nuc-H { background-color: colorAA(7) }
+.nuc-I { background-color: colorAA(8) }
+.nuc-K { background-color: colorAA(9) }
+.nuc-L { background-color: colorAA(10) }
+.nuc-M { background-color: colorAA(11) }
+.nuc-N { background-color: colorAA(12) }
+.nuc-P { background-color: colorAA(13) }
+.nuc-Q { background-color: colorAA(14) }
+.nuc-R { background-color: colorAA(15) }
+.nuc-S { background-color: colorAA(16) }
+.nuc-T { background-color: colorAA(17) }
+.nuc-V { background-color: colorAA(18) }
+.nuc-W { background-color: colorAA(19) }
+.nuc-Y { background-color: colorAA(20) }
+.nuc-Z { color: black }
+.nuc-a { background-color: #FFAAAA; }
+.nuc-c { background-color: #D46A6A; }
+.nuc-g { background-color: #801515; }
+.nuc-t { background-color: #550000; }
+
+.unbordered {
+  margin-bottom: 2px !important;
+  padding: 2px;
+}
+
+.bordered {
+  border: 1px solid #808080;
+  margin: 0px 1px 1px 0px !important;
+  padding: 1px;
+}
+
+.bordered-match {
+  border: 1px solid #808080;
+  background-color: #55bb33;
+  color: #ffffff;
+  margin: 0px 1px 1px 0px !important;
+  padding: 1px;
+}
+
+.tree {
+  vertical-align: top;
+}
