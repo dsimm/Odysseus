@@ -142,7 +142,7 @@ dmypy.json
 
 # Project specific files/folders
 *.pyc
-log/*.log*
+*.log*
 dump.rdb
 postgres.logfile
 stdout

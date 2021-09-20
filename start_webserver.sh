@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 
+# Extract biological data from packed archive
+tar xfz bio_data.tar.gz
+
 # Set default backend for Matplotlib
 mkdir -p ~/.matplotlib
 echo "backend: Agg" > ~/.matplotlib/matplotlibrc
 # Setup ImageMagick
 sed -re 's/<policy domain="coder" rights="none" pattern="PS" \/>/<!--<policy domain="coder" rights="none" pattern="PS" \/>-->/' -i /etc/ImageMagick-6/policy.xml
+
 # Setup PostgreSQL
 export POSTGRES_VERSION=12
 # Accept incoming connections from all IPs ('*')
@@ -25,9 +29,9 @@ service postgresql restart
 # Import data
 createdb -U postgres HeterologousProteinExpression
 gunzip -c database/HeterologousProteinExpression.dump.sql.gz | psql -U postgres HeterologousProteinExpression
-# Extract bio data from packed archive
-tar xfz bio_data.tar.gz
+
 # Start Redis server
 redis-server redis.conf
+
 # Start Flask webserver
 venv/bin/python web/app.py

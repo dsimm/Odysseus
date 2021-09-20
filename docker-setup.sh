@@ -7,6 +7,7 @@ docker-compose build
 # Start image as container via composer
 # docker-compose up
 # docker-compose up -d
+mkdir -p log
 docker-compose up > log/development.log &
 
 # Log into running docker container
