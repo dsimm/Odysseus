@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Extract biological data from packed archive
-[ -d 'bio_data' ] && tar xfz bio_data.tar.gz
+[ ! -d 'bio_data' ] && tar xfz bio_data.tar.gz
 
 # Set default backend for Matplotlib
 mkdir -p ~/.matplotlib
