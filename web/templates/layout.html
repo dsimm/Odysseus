@@ -6,11 +6,20 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="Odysseus is a new gene design software to adapt proteins (CDS) for heterologous expression applications in common model organisms.">
+    <meta name="description" content="Odysseus is a new gene design software to adapt genes (CDS) for heterologous expression applications in common model organisms.">
+    <meta name="keywords" content="heterologous gene expression,Markov chain,relative synonymous codon usage frequency,alpha-synuclein,green fluorescent protein,GFP,RNAFold,PaxDB">
     <meta name="author" content="M. Sc. Dominic Simm">
+    <meta name="email" content="dominic.simm@cs.uni-goettingen.de" />
+    <meta name="copyright" content="University of Goettingen - Institute for Computer Science, Max Planck Institute for Biophysical Chemistry" />
     <link href="{{ url_for('static', filename='img/icons/heprex.png') }}" rel="shortcut icon" type="image/x-icon">
 
-    <title>Odysseus</title>
+    <meta property="og:title" content="Odysseus | Design of typical genes for heterologous gene expression" />
+    <meta property="og:description" content="Flask-based web-toolkit to adapt genes (CDS) for heterologous expression applications in common model organisms." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://odysseus.motorprotein.de" />
+    <meta property="og:image" content="https://odysseus.motorprotein.de{{ url_for('static', filename='img/icons/heprex.png') }}" />
+
+    <title>Odysseus | Design of typical genes for heterologous gene expression</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{ url_for('static', filename='lib/css/bootstrap/bootstrap.min.css') }}" rel="stylesheet" type="text/css" media="screen" >
