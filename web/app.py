@@ -313,7 +313,7 @@ def get_prediction_data():
         rel_codons = heprex.get_rel_codon_usage(setup['G'], setup['nl2codon'])
         rel_dicodons = heprex.get_rel_dicodon_usage(setup['G'], setup['nl2codon'])
         # Display codon-usages of Markov model (normal, weighted, inverted)
-        figures['colormap_genome'] = heprex.make_codon_usage_plots(host_organism, rel_codons, rel_dicodons)
+        figures['colormap_genome'] = heprex.make_codon_usage_plots(host_organism, rel_codons, rel_dicodons, heprex.host_organisms[host_organism]['fullname'])
         cu_table['genome'] = heprex.embed_html_into_svg_file(heprex.make_codon_usage_table(host_organism, rel_codons, heprex.host_organisms[host_organism]['fullname']))
         figures['colormap_suggest'] = heprex.make_codon_usage_plots(host_organism, codons_suggest, dicodons_suggest, 'Codon usage of suggestions')
         cu_table['suggest'] = heprex.embed_html_into_svg_file(heprex.make_codon_usage_table(host_organism, codons_suggest, 'Codon usage of suggestions'))

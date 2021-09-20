@@ -160,7 +160,6 @@ def make_codon_usage_plots(host, codons, dicodons, title=''):
     ax1.xaxis.set_label_coords(0.5, 1.085)
 
     # Figure description
-    title = host_organisms[host]['fullname']
     if len(title) == 0:
         record = SeqIO.read(BASE_PATH_BIO + host_organisms[host]['genbank'], "genbank")
         annot = record.annotations
