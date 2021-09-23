@@ -5,9 +5,10 @@ services:
     build: .
     image: odysseus_standalone
     container_name: odysseus
+    # Keep container running
     # command: tail -f /dev/null
-    command: ./start_webserver.sh
-    # Run Flask webserver in foreground
+    # Run Flask web-server in foreground
+    command: ./install_run.sh
     # restart: always
     env_file:
       - .odysseus.env

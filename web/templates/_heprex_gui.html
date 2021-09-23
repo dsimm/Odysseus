@@ -2,12 +2,50 @@
 {% block body %}
 
         <div class="page-header">
-            <h1><span style="color: #f0ad4e;">Heterologous Gene Expression</span></h1>
+            <h1><span style="color: #f0ad4e;">Gene design for heterologous expression.</span></h1>
             <div class="lead" style="margin-bottom: 4px;">
-                Gene design software to enable controlled protein biosynthesis regulation in modern expression systems.
+                A software to support controlled protein biosynthesis regulation in modern expression systems.
             </div>
         </div>
 
+        <!-- Info boxes -->
+        <div class="panel panel-warning">
+            <div class="panel-heading panel-title" onclick="$(this).next('.panel-body').slideToggle(); $(this).children().toggleClass('glyphicon glyphicon-plus').toggleClass('glyphicon glyphicon-minus');">
+                Designing typical genes with Odysseus  <span class="glyphicon glyphicon-plus" aria-hidden="true" style="float: right;"></span>
+            </div>
+            <div class="panel-body" style="display: none;" >
+                <p class="lead lead-small" style="text-align: justify;">
+                    <abbr title="attribute">Odysseus</abbr> is a software for the design of typical protein-coding sequences for heterologous expression applications in common model organisms. The software realizes a probabilistic approach based on Markov models, that is highly configurable and can be trained with genomic data sets to learn the specific characteristics of common expression systems, such as <em>S. cerevisiae</em>, <em>E. coli</em>, <em>A. thaliana</em> or other.
+                </p>
+                <p class="lead lead-small" style="text-align: justify;">
+                    For the profile generation, besides whole genome data sets also reduced subsets can be used, that are for instance restricted to low or high abundant proteins or protein classes with specific functional roles. Based on these trained profiles, the gene design software enables the user to generate a set of synonymous CDS sequences, for a given gene or protein sequence, all with the same level of typicity with respect to the preset profile.
+                </p>
+                <p class="lead lead-small" style="text-align: justify; ">
+                    Typical genes showed to be well suited for the controlled regulation of the heterologous expression of proteins in such a way that a controlled decrease or increase in the rate of expression can be achieved. For detailed information with insights into an examplary expression study of <em>GFP</em> and <em>human alpha-synuclein (AD)</em> in yeast (<em>S. cerevisiae</em>), see our new publication referenced below or the <a href="/documentation">Documentation</a> and <a href="/faqs">FAQs</a>.
+                </p>
+
+                <p class="lead lead-small" style="font-weight: 400">Software Features:</p>
+                <dl class="row lead lead-smaller">
+                    <dt class="col-sm-3" style="font-weight: 400">Profiles</dt>
+                    <dd class="col-sm-9">
+                        <p>Choose out of pre-trained profiles for common model organisms.</p>
+                        <p>Customize profiles dynamically by protein classes, functions or abundance (<a href="https://pax-db.org/" target="_blank">PaxDB</a>).</p>
+                    </dd>
+                    <dt class="col-sm-3" style="font-weight: 400">Filtering and Exclusion</dt>
+                    <dd class="col-sm-9">
+                        <p>Recognition and cleavage sites of restriction enzymes (site-types, commercial usage from <a href="http://rebase.neb.com/rebase/rebase.html" target="_blank">REBASE</a>).</p>
+                        <p>Stability levels predicted by RNAFold (<a href="https://www.tbi.univie.ac.at/RNA/" target="_blank">ViennaRNA</a>).</p>
+                    </dd>
+                    <dt class="col-sm-3" style="font-weight: 400">Regulate expression levels</dt>
+                    <dd class="col-sm-9">
+                        <p>Optimize the amounts of synthesized protein products e.g. for biopharmaceutical applications.</p>
+                        <p>Avoid toxic effects by overexpressing proteins in expression systems.</p>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+
+        <!-- Citation -->
         <p class="lead lead-small">If Odysseus is helpful for your research, please cite:</p>
         <blockquote cite="https://doi.org/10.1093/bioinformatics/btu700">
             <p>Simm D., Popova B., Braus G. H., Waack S. and Kollmar M. (2021) Design of typical genes for heterologous gene expression.<br>
@@ -16,46 +54,12 @@
 {#                Nucleic Acids Research, Volume 49, Issue 12, 9 July 2021, Pages 6804–6816. <cite><img src="http://www.doi.org/img/Logo_TM.png" alt="DOI_disc_logo" width="16" height="16"> - <a href="https://doi.org/10.1093/nar/gkab493" target="_blank">10.1093/nar/gkab493</a></cite>#}
             </p>
         </blockquote>
+        <!-- Citation -->
 
-        <div class="panel panel-warning">
-            <div class="panel-heading panel-title" onclick="$(this).next('.panel-body').slideToggle(); $(this).children().toggleClass('glyphicon glyphicon-plus').toggleClass('glyphicon glyphicon-minus');">
-                Designing typical genes with Odysseus  <span class="glyphicon glyphicon-plus" aria-hidden="true" style="float: right;"></span>
-            </div>
-            <div class="panel-body" style="display: none;" >
-                <p class="lead lead-small" style="text-align: justify;">
-                    <abbr title="attribute">Odysseus</abbr> is a software for the design of typical protein-coding sequences for heterologous expression applications in common model organisms. The software realizes a probabilistic approach based on Markov models, that is highly configurable and can be trained with genomic data sets to learn the genetic characteristics of common expression systems, such as <em>S. cerevisiae</em>, <em>E. coli</em> or other.
-                </p>
-                <p class="lead lead-small" style="text-align: justify;">
-                    For the profile generation, besides whole genome data sets also reduced subsets can be used, that are for instance restricted to low or high abundant proteins or protein classes with specific functional roles. Based on these trained profiles, the gene design software enables the user to generate a set of synonymous CDS sequences for a given gene or protein sequence, all with the same level of typicity with respect to the chosen profile.
-                </p>
-                <p class="lead lead-small" style="text-align: justify; ">
-                    Typical genes are well suited for a controlled regulation of the heterologous expression of proteins. For detailed information with insights into an examplary expression study of <em>GFP</em> and <em>alpha-synuclein</em> in yeast (<em>S. cerevisiae</em>), see our new publication referenced below or the <a href="/documentation">Documentation</a> and <a href="/faqs">FAQs</a>.
-                </p>
-
-                <p class="lead lead-small" style="font-weight: 400">Software Features:</p>
-                <dl class="row lead lead-smaller">
-                    <dt class="col-sm-3" style="font-weight: 400">Profiles</dt>
-                    <dd class="col-sm-9">
-                        <p>Choose pre-calculated profiles for common model organisms</p>
-                        <p>Customize dynamically by protein classes, functions or abundance (<a href="https://pax-db.org/" target="_blank">PaxDB</a>)</p>
-                    </dd>
-                    <dt class="col-sm-3" style="font-weight: 400">Filtering and Exclusion</dt>
-                    <dd class="col-sm-9">
-                        <p>Restriction Sites of commercial or all enzymes (<a href="http://rebase.neb.com/rebase/rebase.html" target="_blank">REBASE</a>)</p>
-                        <p>Stability level predicted by RNAFold (<a href="https://www.tbi.univie.ac.at/RNA/" target="_blank">ViennaRNA</a>)</p>
-                    </dd>
-                    <dt class="col-sm-3" style="font-weight: 400">Regulate expression levels</dt>
-                    <dd class="col-sm-9">
-                        <p>Avoid toxic effects by overexpresing proteins in the expression system</p>
-                        <p>Optimize the amounts of synthesized protein products for biopharmaceutical applications</p>
-                    </dd>
-                </dl>
-            </div>
-        </div>
 
         <div class="panel panel-warning">
         <div class="panel-heading panel-title" onclick="$(this).next('.panel-body').slideToggle(); $(this).children().toggleClass('glyphicon glyphicon-plus').toggleClass('glyphicon glyphicon-minus');">
-            Quick start guide  <span class="glyphicon glyphicon-plus" aria-hidden="true" style="float: right;"></span>
+            Quick Start Guide  <span class="glyphicon glyphicon-plus" aria-hidden="true" style="float: right;"></span>
         </div>
         <div class="panel-body" style="display: none;" >
             <p class="lead lead-small" style="text-align: justify;">
@@ -64,25 +68,27 @@
                     <dd class="col-sm-9">
                         <p>Paste the sequence information of the protein or gene of your interest in the <em>input mask</em>.</p>
                         <p>Choose the number of modified sequences to be generated.</p>
-                        <p>Select a pre-calculated profile for the adaptation to a model organism and generate.</p>
+                        <p>Select a pre-trained profile for the adaptation to a model organism and press Generate.</p>
                     </dd>
                     <dt class="col-sm-3" style="font-weight: 400">2. Step: Detailed configuration (optional)</dt>
                     <dd class="col-sm-9">
-                        <p>Filter resulting synonymous gene sequences for certain restriction sites or RNA stability level (<em>MFE</em>) </p>
-                        <p>Dynamically create a custom profile with different CU weighting or by restricting protein subsets on abundancy or functional classes.</p>
+                        <p>Filter resulting synonymous gene sequences for certain restriction sites or RNA stability levels (<em>MFE</em>).</p>
+                        <p>Dynamically create a custom profile with alternative codon-usage weighting or by restricting the host genome data to protein subsets with specified abundancies or functional classes.</p>
                     </dd>
                     <dt class="col-sm-3" style="font-weight: 400">3. Step: Inspect generated synonymous gene sequences</dt>
                     <dd class="col-sm-9">
-                        <p>Compare DNA sequence suggestions by functional alignments (plain, amino acids, codon differences)</p>
-                        <p>Inspect single gene information such as sequence statistics, RNA stability and structure or Base pairing sites</p>
-                        <p>Control profile information of model and suggestions</p>
+                        <p>Compare DNA sequence suggestions by functional alignments (plain, amino acids, codon differences).</p>
+                        <p>Inspect single gene information such as sequence statistics, RNA stability and structure or base pairing sites.</p>
+                        <p>Control the profile information of the model and the suggested genes (codon-usage heatmaps and tables).</p>
                     </dd>
                 </dl>
             </p>
         </div>
         </div>
+        <!-- Info boxes -->
 
-        <!-- Form section -->
+
+        <!-- Application forms -->
           <div class="panel panel-primary">
             <div class="panel-heading"><h3 class="panel-title">Sequence Input Mask</h3></div>
             <div class="panel-body">
