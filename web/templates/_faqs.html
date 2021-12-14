@@ -6,7 +6,30 @@
     <div class="panel">
         <div class="panel-heading panel-title"><h3 style="color: #f0ad4e;">FAQs</h3></div>
         <div class="panel-body" >
-            <p class="lead">Coming soon!</p>
+            <p class="lead" style="display: none;">Coming soon!</p>
+            <div class="card carousel-inner w-75">
+                <div class="card-body">
+                    <h5 class="card-title"><span class="glyphicon glyphicon-search" style="padding-right: 8px;"></span>
+                        Can I use an expression system profile which is not listed in the online options?</h5>
+                    <p class="card-text">Yes you can, but not in the online system. If you want to integrate your own expression profile or use another from online databases, you have to install the Odysseus software locally. Please go to the github page for more details.</p>
+                </div>
+            </div>
+            <p class="divider"><hr></p>
+            <div class="card carousel-inner w-75">
+                <div class="card-body">
+                    <h5 class="card-title"><span class="glyphicon glyphicon-search" style="padding-right: 8px;"></span>
+                        Does Odysseus allow to design genes with selenocysteins?</h5>
+                    <p class="card-text">No, this is not allowed at the moment. Selenocysteines are integrated at UGA stop codons if a so-called SECIS-element is present. This SECIS-element is located downstream of the UGA codon and the distance to the UGA and length and sequence of the SECIS element strongly differs between bacteria and eukaryotes. We assume that incorporating selenocysteines is a rather rare and specialized topic. The SECIS-element could be implemented in Odysseus in an own github branch or manually added to a typical gene suggested by Odysseus.</p>
+                </div>
+            </div>
+            <p class="divider"><hr></p>
+            <div class="card carousel-inner w-75">
+                <div class="card-body">
+                    <h5 class="card-title"><span class="glyphicon glyphicon-search" style="padding-right: 8px;"></span>
+                        Is there an option to generate genes just based on only the most common of each synonymous codons, or only based on those codons for which tRNAs are present? If there are tRNAs for multiple synonymous codons, could only those codons be selected for which most tRNAs are present?</h5>
+                    <p class="card-text">No, Odysseus generates so-called "typical" genes. Even in highly expressed genes the codon usage is not restricted to just a single of synonymous codons. In many codon boxes, the codon for which no cognate-tRNA exists is the most highly used. Because Odysseus generates typical genes based on codon usage probabilities, it is possible that the designed gene just contains only the most used codons, but there is not an option to enforce this.</p>
+                </div>
+            </div>
         </div>
     </div>
 
