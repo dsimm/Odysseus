@@ -4,6 +4,7 @@ Odysseus - Heterologous Gene Expression
 Odysseus is a new gene design software to optimize protein sequence data (CDS) for heterologous expression applications in common model organisms. These typical genes, adapted to the genomic characteristics of a host organism, help regulate protein expression   in such a way that a controlled decrease or increase in the rate of expression can be achieved. The software is written in Python 2.7 and realized using a probabilistic model in form of a Markov chain. The central Markov model is highly configurable by selecting pre-trained host profiles and allows to generate, for a given protein or gene sequence, sets of new synonymous DNA sequences adapted to a preset host organism. For detailed information on the functionality of the software, please see the publication linked below.
 
 > Simm D., Popova B., Braus G. H., Waack S. and Kollmar M. (2021) Design of typical genes for heterologous gene expression.
+> Scientific Reports. 12(9625). [doi: 10.1038/s41598-022-13089-1](https://doi.org/10.1038/s41598-022-13089-1)
 
 
 Online access
